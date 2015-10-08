@@ -6,13 +6,13 @@ Configuration::write('db.host', 'localhost');
 Configuration::write('db.port', '');
 Configuration::write('db.basename', 'nez_soc_net');
 Configuration::write('db.user', 'root');
-Configuration::write('db.password', 'gh0c2211hrx');
+Configuration::write('db.password', '');
 // Project Config
 Configuration::write('path.url', '/nez_soc_net/');
 
 
-Configuration::write('mail.username', 'ghoc.hrx@gmail.com');
-Configuration::write('mail.password', 'isyxblxmzaxlnuku');
+Configuration::write('mail.username', 'myemail@socialnet.com');
+Configuration::write('mail.password', 'trlababalan');
 Configuration::write('mail.host', 'smtp.gmail.com');
 Configuration::write('mail.port', '587');
 
