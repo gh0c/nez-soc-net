@@ -1,0 +1,24 @@
+{% extends "templates/default.twig" %}
+{% block title %}
+    PASS RESET
+{% endblock %}
+
+{% block content %}
+
+
+
+        {% include "templates/partials/user_messages.twig" %}
+
+
+        {% include "templates/partials/live_status.container.twig" %}
+
+    <div>
+        <p>
+            Url koji bi trebali dobiti u mailu:
+        </p>
+        <p>
+            {{ base }}{{ urlFor('user.password_reset') }}?user={{ user.email }}&token= {{ token|url_encode }}
+        </p>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "templates/default.twig" %}
+{% block title %}
+    Cloudinary test preview
+{% endblock %}
+
+{% block content %}
+
+
+    <div class = "title-box">
+            <h1>Cloudinary test preview</h1>
+    </div>
+
+
+    <div class = "vertical-section">
+        <div>
+            <h4>Sto banana</h4>
+        </div>
+    </div>
+
+    <div class = "vertical-section">
+        <div>
+            {{ cl_image_tag("testa/c1.jpg", {"alt" : "Sample Image"} ) }}
+        </div>
+    </div>
+
+
+    {% include "templates/partials/user_messages.twig" %}
+
+
+
+
+
+
+
+{% endblock %}
+

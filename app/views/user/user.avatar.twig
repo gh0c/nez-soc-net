@@ -1,0 +1,167 @@
+{% extends "templates/default.twig" %}
+{% block title %}
+    Avatar
+{% endblock %}
+
+{% block content %}
+
+
+    <div class = "title-box">
+        <h1>Avatar {{ auth.ssbos('članice', 'člana') }}</h1>
+    </div>
+
+    <form method = "post" name = "user-avatar-upload" id = "user-avatar-upload" onsubmit="return false;"
+          action = "{{ urlFor('user.avatar_ul.post') }}"  enctype="multipart/form-data">
+
+        <div class = "vertical-section">
+            <div>
+                <h4 class = "special input">Trenutni avatar: </h4>
+
+                <div class = "home-icon-cont">
+                    {% set avatar = auth.getAvatarPath("thumb1") %}
+                    {%  if avatar %}
+
+                        <div class = "thumbnail user">
+                            <div class = "pic-cont">
+                                <span class="v-align-helper"></span><img src="{{ avatar }}">
+                            </div>
+                        </div>
+
+                    {% else %}
+                        <div class = "thumbnail user user-icon">
+                            <div class="pic-cont">
+                                <span class="v-align-helper"></span><i class = "fa fa-{{ auth.ssbos('fe', '') }}male"></i>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+
+        <div class = "vertical-section">
+            <div>
+                <h4 class = "special input">Slika: </h4>
+                <input type="hidden" name="MAX_FILE_SIZE" value="2000000" />
+                <input type="file" accept="image/jpeg,image/gif,image/png" tabindex="1"
+                       name="avatar_file" id="avatar_file" class = "text-input file-input"/>
+                <div class = "pp-upload-file text-input upload">
+                    <label for = "avatar_file" class = "button-label">
+                        <i class = "fa fa-fw fa-cloud-upload"></i> <span>Odaberite datoteku</span>
+                    </label>
+                    <label id = "selected-file">
+                        <span></span>
+                    </label>
+                </div>
+                <h4 class = "req">Min: 55x55px, Max: 2MB</h4>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            $(document).on('change', '#avatar_file:file', function() {
+                var input = $(this),
+                        numFiles = input.get(0).files ? input.get(0).files.length : 1,
+
+                        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+                input.trigger('fileselect', [numFiles, label]);
+            });
+
+            $(document).ready( function() {
+                $('#avatar_file:file').on('fileselect', function(event, numFiles, label) {
+                    var input = $(this).parents('.vertical-section').find('#selected-file > span'),
+                            button = $(this).parents('.vertical-section').find('.button-label > span'),
+                            log = numFiles > 1 ? ' Odabranih datoteka: ' + numFiles : label;
+
+                    if( input.length ) {
+                        if(log === "") {
+                            input.html(log);
+                            button.text('Odaberite datoteku');
+                        } else {
+                            input.html('<i class = "fa fa-fw fa-file-image-o"></i> ' + log);
+                            button.text('Odabrano: ');
+                        }
+                    } else {
+                        if( log ) alert(log);
+                    }
+
+                });
+            });
+        </script>
+
+
+
+        <div class = "vertical-section">
+            <div>
+                <h4 class = "special input">Samo izbriši: </h4>
+                <input type="checkbox" name="delete_avatar" id="delete-avatar"
+                       class = "cb-input delete-avatar " tabindex="2">
+                <div class = "pp-checkbox text-input email">
+                    <label for = "delete-avatar"></label>
+                </div>
+            </div>
+
+        </div>
+
+        {% include "templates/partials/user_messages.twig" %}
+
+        {% include "templates/partials/live_status.container.twig" %}
+
+
+
+        <script type="text/javascript" src="public/js/validation.js?{{ "now"|date("YmdHis") }}"></script>
+        <script type="text/javascript">
+            $('#avatar_file').bind('change', function() {
+                if (this.files[0]) {
+                    size_in_megabytes = this.files[0].size/1024/1024;
+                    if (size_in_megabytes > 2) {
+                        alert('Najveća dopuštena veličina slike je 2 MB. Odaberite manju sliku!');
+                    }
+                }
+            });
+        </script>
+
+        <input type = "hidden" name = "{{ csrf_key }}" value = "{{ csrf_token }}">
+        <div class = "submitter-cont">
+            <div>
+                <div class = "submitter submit" tabindex="3" title = "Spremi promjene"
+                     onclick="validateAndSubmitAvatarUpload('user-avatar-upload')">
+                    <span>SPREMI</span>
+                </div>
+
+                <div class="submitter">
+                        <a href = "{{ urlFor('user.profile') }}" tabindex="4">ODUSTANI</a>
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+
+    </form>
+
+    <script>
+
+        function valSub() {
+            if(formSubmittingActive == true) {
+                validateAndSubmitAvatarUpload('user-avatar-upload');
+                return false;
+            }
+        }
+        $('#user-avatar-upload').keydown(function(e) {
+
+            if (e.keyCode == 13) {
+                valSub();
+            }
+        });
+        $('.submitter.submit').keydown(function(e) {
+
+            if (e.keyCode == 13) {
+                valSub();
+            }
+        });
+    </script>
+
+{% endblock %}
+

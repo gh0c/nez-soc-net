@@ -1,0 +1,30 @@
+{% extends "templates/default.twig" %}
+{% block title %}
+    Profilna stranica
+{% endblock %}
+
+{% block content %}
+
+    <div class = "title-box">
+        <h1>Profilna</h1>
+    </div>
+    <div class="inner-container">
+        <h1>Profil</h1>
+
+        {% include "templates/partials/user_messages.twig" %}
+        <div>
+            <span>Korisnik: {{ user.username }} ({{ user.email }})</span>
+            {% set avatar = auth.getAvatarPath %}
+            <span>Avatar path: {{ avatar }}</span>
+        </div>
+    </div>
+
+    <div class = "vertical-section">
+        <div>
+            <a href = "{{ urlFor('user.avatar') }}">Avatar</a>
+            <a href = "{{ urlFor('user.password_change') }}">Promjena lozinke</a>
+            <a href = "clanovi/profil/lozinka">lozinka</a>
+            <a href = "clanovi/profil/podaci">podaci</a>
+        </div>
+    </div>
+{% endblock %}

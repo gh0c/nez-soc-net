@@ -1,0 +1,143 @@
+{% extends "templates/default.twig" %}
+{% block title %}
+    Registracija
+{% endblock %}
+
+{% block content %}
+
+    <div class = "title-box">
+        <h1>REGISTRACIJA NOVIH ČLANOVA</h1>
+    </div>
+
+
+
+
+    <form method = "post" name = "user-registration" id = "user-registration"  onsubmit="return false;"
+          action = "{{ urlFor('user.registration.post') }}">
+
+        <div class = "vertical-section">
+            <div>
+                <h4 class = "special input">E-mail: </h4>
+                <input type="text" name="email" id="email" placeholder="E-mail" required tabindex="1"
+                       maxlength="255" spellcheck="false"  class = "text-input email"/>
+                <h4 class = "req">*</h4 >
+            </div>
+        </div>
+
+        <div class = "vertical-section">
+            <div>
+                <h4 class = "special input">Korisničko ime: </h4>
+                <input type="text" name="username" id="username" placeholder="Korisničko ime" required tabindex="2"
+                       maxlength="255" spellcheck="false"  class = "text-input email"/>
+                <h4 class = "req">*</h4 >
+            </div>
+        </div>
+
+
+        <div class = "vertical-section">
+            <div>
+                <h4 class = "special input">Lozinka: </h4>
+                <input type="password" name="password" id="password" placeholder="Lozinka" required
+                       maxlength="255" spellcheck="false" autocomplete="off" tabindex="3"
+                       class = "text-input email"/>
+                <h4 class = "req">*</h4 >
+            </div>
+
+        </div>
+
+        <div class = "vertical-section">
+            <div>
+                <h4 class = "special input">Ponovi lozinku: </h4>
+                <input type="password" name="password-repeated" id="password-repeated" placeholder="Ponovljena lozinka" required
+                       maxlength="255" spellcheck="false" autocomplete="off" tabindex="4"
+                       class = "text-input email"/>
+                <h4 class = "req">*</h4 >
+            </div>
+        </div>
+
+
+        <div class = "vertical-section">
+            <div>
+                <h4 class = "special input">Ime: </h4>
+                <input type="text" name="first-name" id="first-name" placeholder="Ime" tabindex="5"
+                       maxlength="255" spellcheck="false"  class = "text-input email"/>
+            </div>
+        </div>
+
+
+        <div class = "vertical-section">
+            <div>
+                <h4 class = "special input">Prezime: </h4>
+                <input type="text" name="last-name" id="last-name" placeholder="Prezime"  tabindex="6"
+                       maxlength="255" spellcheck="false"  class = "text-input email"/>
+            </div>
+        </div>
+
+
+        <div class = "vertical-section">
+            <div>
+                <h4 class = "special input">Spol: </h4>
+
+                <div class = "pp-radio-div">
+
+                    <input type="radio" name="sex" value = "M" id = "sex-male"
+                       class = "rb-input sex " tabindex="7">
+                    <div class = "radio-div-cont first-left">
+                        <label for = "sex-male"><span>Muški </span><i class = "fa fa-fw fa-male"></i></label>
+                    </div>
+
+                    <input type="radio" name="sex" value = "F" id = "sex-female"
+                           class = "rb-input sex" tabindex="8">
+                    <div class = "radio-div-cont second-left">
+                        <label for = "sex-female"><span>Ženski </span><i class = "fa fa-fw fa-female" ></i></label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        {% include "templates/partials/user_messages.twig" %}
+
+
+        {% include "templates/partials/live_status.container.twig" %}
+
+
+        <script type="text/javascript" src="public/js/validation.js?{{ "now"|date("YmdHis") }}"></script>
+
+        <input type = "hidden" name = "{{ csrf_key }}" value = "{{ csrf_token }}">
+        <div class = "submitter-cont">
+            <div>
+                <div class = "submitter submit" tabindex="9"
+                     onclick="validateAndSubmitRegistration('user-registration')">
+                    <span>PRIJAVA</span>
+                </div>
+                <div class="submitter">
+                    <a href = "{{ urlFor('home') }}" tabindex="10">ODUSTANI</a>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+
+    <script>
+        function valSub() {
+            if(formSubmittingActive == true) {
+                validateAndSubmitRegistration('user-registration');
+                return false;
+            }
+        }
+        $('#user-registration').keydown(function(e) {
+            if (e.keyCode == 13) {
+                valSub();
+            }
+        });
+        $('.submitter.submit').keydown(function(e) {
+
+            if (e.keyCode == 13) {
+                valSub();
+            }
+        });
+    </script>
+
+{% endblock %}

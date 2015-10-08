@@ -1,0 +1,70 @@
+{% extends "templates/default.twig" %}
+{% block title %}
+    Cloudinary test
+{% endblock %}
+
+{% block content %}
+
+
+    <div class = "title-box">
+        <h1>Cloudinary test</h1>
+    </div>
+
+    <form method = "post" name = "user-avatar-upload" id = "user-avatar-upload" onsubmit="return false;"
+          action = "{{ urlFor('user.cloudinary_ul.post') }}"  enctype="multipart/form-data">
+
+
+        <div class = "vertical-section">
+            <div>
+                <h4 class = "special input">Slika: </h4>
+                <input type="hidden" name="MAX_FILE_SIZE" value="2000000" />
+                <input type="file" accept="image/jpeg,image/gif,image/png" tabindex="1"
+                       name="avatar_file" id="avatar_file" class = "text-input upload"/>
+                <h4 class = "req">Min: 55x55px, Max: 2MB</h4>
+            </div>
+        </div>
+
+
+        {% include "templates/partials/user_messages.twig" %}
+
+        {% include "templates/partials/live_status.container.twig" %}
+
+
+
+        <script type="text/javascript" src="public/js/validation.js?{{ "now"|date("YmdHis") }}"></script>
+        <script type="text/javascript">
+            $('#avatar_file').bind('change', function() {
+                if (this.files[0]) {
+                    size_in_megabytes = this.files[0].size/1024/1024;
+                    if (size_in_megabytes > 2) {
+                        alert('Najveća dopuštena veličina slike je 2 MB. Odaberite manju sliku!');
+                    }
+                }
+            });
+        </script>
+
+        <input type = "hidden" name = "{{ csrf_key }}" value = "{{ csrf_token }}">
+        <div class = "submitter-cont">
+            <div>
+                <div class = "submitter submit" tabindex="3" title = "Spremi promjene"
+                     onclick="document.forms['user-avatar-upload'].submit();">
+                    <span>SPREMI</span>
+                </div>
+
+                <div class="submitter">
+                    <a href = "{{ urlFor('user.profile') }}" tabindex="4">ODUSTANI</a>
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+
+    </form>
+
+
+
+{% endblock %}
+

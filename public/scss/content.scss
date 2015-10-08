@@ -1,0 +1,764 @@
+@import "modules/modules.import";
+
+
+
+#pp-content {
+  .pp-content-box {
+    background-color: $color-bd2;
+    border: 1px solid rgba(70, 43, 23, 0.86);
+    @include box-shadow(inset 0 0 50px #3A1F0C, 0 0 40px #928268);
+
+    padding: 0px;
+    @include breakpoint(desktop) {
+      padding: 15px;
+    }
+
+    .title-box {
+      text-align: center;
+
+      padding: 6px 30px 8px 30px;
+      @include breakpoint(desktop) {
+        padding: 8px 35px 10px 35px;
+      }
+      h1 {
+        color: $color-y1;
+
+        font-family: MyriadPro;
+        font-weight: bold;
+        display: inline;
+        text-transform: uppercase;
+
+        font-size: 1.9em;
+        padding: 6px;
+        @include breakpoint(desktop) {
+          font-size: 2.2em;
+          padding: 8px;
+        }
+      }
+    }
+
+    .pp-content {
+      padding: 8px 40px;
+      font-family: MyriadPro;
+      color: $color-y1;
+      & > p {
+        font-size: 1em;
+        padding: 4px 1em 3px 1em;
+        line-height: 1.4em;
+        margin-bottom: .8em;
+
+        a {
+          color: $color-y1;
+          background-color: $color-bd1;
+          padding: 2px 8px;
+          text-decoration: none;
+
+          &:hover {
+            color: $color-bd2;
+          }
+        }
+      }
+    }
+
+
+  }
+
+
+  div.info {
+    .status-container {
+      display: inline-table;
+      width: 100%;
+      text-align: center;
+
+
+      &.warning-msg {
+        @include gradient-status-bg();
+        @include box-shadow(inset 0 -1px 0 rgba(255,255,255,.4));
+        width: 100%;
+        border: 1px solid;
+        color: #fff;
+        text-shadow: 0 1px 0 rgba(0,0,0,.6);
+        i.fa.warning {
+          display: table-cell;
+          vertical-align: middle;
+        }
+        h4, i.status.fa {
+          color: #fff;
+        }
+        &.live {
+          background-color: #eaaf51;
+          border-color: #d99a36;
+        }
+
+        &.error-msg {
+//          @include gradient-red-err();
+          background-color:rgb(191,26,26);
+          border-color: #991515;
+//          h4, i.status.fa {
+//            background-color:rgb(191,26,26);
+//            border-color: #991515;
+//          }
+        }
+        &.success-msg {
+          background-color:#67B11C;
+          border-color: #518C17;
+        }
+        &.status-msg {
+          background-color: $color-b2-info;
+        }
+      }
+
+      i.status.fa {
+        vertical-align: middle;
+        display: table-cell;
+        width: 3em;
+      }
+
+
+//      &.error-msg {
+//        @include gradient-red-err();
+//        h4, i.status.fa {
+//          color: $color-w1-err;
+//        }
+//      }
+//      &.success-msg {
+//        @include gradient-green-success();
+//        h4, i.status.fa {
+//          color: $color-w2-succ;
+//        }
+//      }
+//      &.status-msg {
+//        background-color: $color-b2-info;
+//        h4, i.status.fa {
+//          color: $color-y1;
+//        }
+//      }
+      h4 {
+        display: inline-block;
+        font-family: MyriadPro Semibold;
+        text-align: center;
+        padding: 4px 5px 5px 5px;
+      }
+
+      .pp-icon-spin {
+        font-size: 1.40em;
+        color: $color-oker-spin;
+        vertical-align: middle;
+//        padding-left: 1em;
+      }
+
+      &.msg {
+        min-height: 3em;
+        vertical-align: middle;
+
+        & > h4 {
+          min-height: 2em;
+          vertical-align: middle;
+          display: table-cell;
+          padding-right: 0;
+        }
+
+      }
+    }
+  }
+
+  .vertical-section {
+    font-family: MyriadPro;
+    
+    padding: 3px 8px 2px 8px;
+    font-size: .9em;
+    @include breakpoint(desktop) {
+      padding: 4px 40px 2px 40px;
+      font-size: 1.0em;
+    }
+
+    & > div {
+      background-color: rgba(0, 0, 0, .10);
+      white-space: initial;
+      padding: .4em .5em;
+      @include breakpoint(desktop) {
+        padding: 0.5em 0.7em;
+      }
+    }
+    h4 {
+      color: $color-y1;
+      &.special {
+
+        font-family: MyriadPro Semibold;
+        font-weight: bold;
+        display: inline-block;
+
+        padding: 4px 4px 4px 4px;
+        width: 8em;
+        line-height: 1.2em;
+        @include breakpoint(desktop) {
+          padding: 5px 5px 5px 5px;
+          width: 12em;
+          line-height: 1.3em;
+        }
+      }
+      &.req {
+        font-family: MyriadPro;
+        padding: 4px 5px 5px 4px;
+        color: rgb(217,77,77);
+        display: none;
+        @include breakpoint(desktop) {
+          display: inline-block;
+        }
+      }
+
+      &.inform {
+        display: inline-block;
+      }
+    }
+
+    a {
+      color: $color-y1;
+      &:hover {
+        color:$color-bd1;
+      }
+    }
+
+    .home-icon-cont {
+      display: inline-block;
+      .thumbnail {
+        margin: 0 auto;
+        display:inline-block;
+      }
+
+      .user {
+        width: 3.75em;
+        height: 3.75em;
+      }
+
+      .pic-cont {
+
+        width: 100%;
+        height: 100%;
+        @include box-shadow(inset 0 -4px 1.2em rgba(250, 235, 215, 0.1),
+          0 0 .8em rgba(58, 31, 12, 0.50));
+
+        white-space: nowrap;
+
+        & > .v-align-helper {
+          display: inline-block;
+          height: 100%;
+          vertical-align: middle;
+        }
+        & > img {
+          max-width: 100%;
+          max-height: 100%;
+          vertical-align: middle;
+        }
+
+        & > .fa {
+          font-size: 2em;
+          vertical-align: middle;
+          color: $color-y1;
+        }
+
+        &.rounded {
+          border-radius: 50%;
+          & > img {
+            max-width: 98%;
+            max-height: 98%;
+            vertical-align: middle;
+            border-radius: 50%;
+          }
+        }
+      }
+
+    }
+
+  }
+
+  .pp-image-resize-box {
+    min-width: 600px;
+    max-width: 1290px;
+    padding: .4em 1em;
+    margin: 0 auto;
+    text-align: center;
+
+    .component {
+      position: relative;
+      max-height: 540px;
+      height: 500px;
+      min-height: 250px;
+      border: 3px solid $color-y1;
+      min-width: 660px;
+      overflow: hidden;
+      margin: 0 auto;
+      @include graditent-yb1-rad();
+
+      .overlay {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -93px;
+        margin-top: -93px;
+        z-index: 999;
+        width:  #{($thumb_size)}px;
+        height: #{($thumb_size)}px;
+
+        border: solid 8px $color-r1;
+        box-sizing: content-box;
+        pointer-events: none;
+
+        &:after, &:before {
+          content: '';
+          position: absolute;
+          display: block;
+          width: #{($thumb_size) + 16}px;
+          height: 35px;
+          border-left: dotted 3px $color-r1;
+          border-right: dotted 3px $color-r1;
+        }
+        &:before {
+          top: 0;
+          margin-left: -8px;
+          margin-top: -35px;
+        }
+        &:after {
+          bottom: 0;
+          margin-left: -8px;
+          margin-bottom: -35px;
+        }
+
+        .overlay-inner:after, .overlay-inner:before {
+          content: '';
+          position: absolute;
+          display: block;
+          width: 35px;
+          height: 186px;
+          border-top: dotted 3px $color-r1;
+          border-bottom: dotted 3px $color-r1;
+        }
+
+        .overlay-inner:before {
+          left: 0;
+          margin-left: -35px;
+          margin-top: -8px;
+        }
+
+        .overlay-inner:after {
+          right: 0;
+          margin-right: -35px;
+          margin-top: -8px;
+        }
+      }
+
+      $overlay-color: rgba(230, 230, 230, 0.55);
+
+      .transparent-overlay {
+         position: absolute;
+         left: 50%;
+         top: 50%;
+         margin-left: #{-(($thumb_size+4000)/2)}px;
+         margin-top: #{-(($thumb_size+4000)/2)}px;
+         z-index: 30;
+         width: #{($thumb_size)}px;;
+         height:#{($thumb_size)}px;;
+         box-sizing: content-box;
+         pointer-events: none;
+
+         border: 2000px solid $overlay-color;
+
+      }
+
+    }
+    .resize-container {
+      position: relative;
+      display: inline-block;
+      cursor: move;
+      margin: 0 auto;
+      top: 1em;
+      .resize-handle-ne, .resize-handle-se, .resize-handle-nw, .resize-handle-sw {
+        position: absolute;
+        display: block;
+        width: 14px;
+        height: 14px;
+        background: $color-y2;
+        z-index: 999;
+        border: 2px solid $color-r1;
+
+        $border-extra-color: $color-r1;
+        &:before {
+          content: '';
+          position: absolute;
+          display: block;
+          width: 2em;
+          height: 2em;
+          z-index: 999;
+          border-style: dashed;
+          border-color: $border-extra-color;
+          border-width: 0;
+        }
+      }
+      .resize-handle-nw {
+        top: -5px;
+        left: -5px;
+        cursor: nw-resize;
+        &:before {
+          left: 1px;
+          top: 1px;
+
+          border-left-width: 2px;
+          border-top-width: 2px;
+        }
+      }
+      .resize-handle-ne {
+        top: -5px;
+        right: -5px;
+        cursor: ne-resize;
+        &:before {
+          right: 1px;
+          top: 1px;
+
+          border-right-width: 2px;
+          border-top-width: 2px;
+        }
+      }
+      .resize-handle-sw {
+        bottom: -5px;
+        left: -5px;
+        cursor: sw-resize;
+        &:before {
+          left: 1px;
+          bottom: 1px;
+
+          border-left-width: 2px;
+          border-bottom-width: 2px;
+        }
+      }
+      .resize-handle-se {
+        bottom: -5px;
+        right: -5px;
+        cursor: se-resize;
+        &:before {
+          right: 1px;
+          bottom: 1px;
+
+          border-right-width: 2px;
+          border-bottom-width: 2px;
+        }
+      }
+      img {
+        display: block;
+      }
+
+    }
+  }
+
+  .submitter-cont {
+    padding: 4px 50px;
+    & > div {
+      padding: 6px 8px;
+      background-color: rgba(0, 0, 0, .10);
+      font-family: MyriadPro;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .submitter {
+      width: 12em;
+      margin: 5px 10px;
+      text-align: center;
+      text-shadow: 1px 1px 3px rgba(195, 193, 181, 0.5);
+      cursor: pointer;
+      display: inline-block;
+      border: none;
+
+      @include pp-transition(all 0.4s ease-in);
+      @include rounded(8px);
+      @include box-shadow(inset 0px 0px 4px rgba(0,0,0,0.8));
+      color: $color-bd2;
+
+      background-color: $color-y1;
+      @include gradient-yb3-sbm();
+        & > * {
+          display: inline-block;
+          width: 100%;
+//          height: 100%;
+          padding: 4px 16px;
+        }
+      &:hover, &:focus {
+        @include gradient-yb4-smb-hov();
+      }
+      &:active {
+        @include gradient-yb5-smb-act();
+      }
+
+    }
+  }
+
+  form > .vertical-section {
+
+
+//      font-family: MyriadPro Semibold;
+//      font-weight: bold;
+//      display: inline-block;
+//
+//      padding: 4px 0px 4px 0px;
+//      line-height: 1.2em;
+//      @include breakpoint(desktop) {
+//        padding: 5px 0px 5px 0px;
+//        width: 12em;
+//        line-height: 1.3em;
+//      }
+
+    input[type="file"].file-input {
+//      display:none;
+//      visibility: hidden;
+      width: 10em;
+      opacity: 0;
+      margin-left: -3px;
+      &:focus + .pp-upload-file {
+        background-color:rgba(210, 210, 210, .12);
+        border:2px solid $color-bd1;
+
+        @include box-shadow(0 0 4px rgba(210, 210, 210, .06));
+      }
+
+      & + .pp-upload-file {
+        display: inline-block;
+        text-align: left;
+        position: relative;
+        left: -10em;
+        padding-left: 0;
+
+        & > label.button-label {
+          position: relative;
+          padding: 0 0.8em;
+          cursor: pointer;
+          text-align: center;
+          color: #917456;
+
+          border-right: 1px #917456 solid;
+          @include pp-transition(all 0.40s);
+          &:hover {
+            color: $color-bd1;
+            border-right-color: $color-bd1;
+          }
+
+        }
+
+        & > label#selected-file {
+          color: $color-y1;
+          padding-left: 0.8em;
+        }
+
+        & + h4.req {
+          position: relative;
+          left: -9em;
+        }
+
+      }
+    }
+
+      //input[type="checkbox"]
+    input[type="checkbox"].cb-input {
+      opacity: 0;
+      &:focus + .pp-checkbox {
+        background-color:rgba(210, 210, 210, .12);
+        border:2px solid $color-bd1;
+
+        @include box-shadow(0 0 4px rgba(210, 210, 210, .06));
+      }
+
+      & + .pp-checkbox {
+        display: inline-block;
+        text-align: center;
+        left: -16px;
+        position: relative;
+        & > label {
+          position: relative;
+          padding: 0 8.5em;
+          cursor: pointer;
+          text-align: center;
+
+
+          &:before {
+            font-family: FontAwesome;
+            left: 50%;
+            color: #917456;
+            text-align: center;
+            width: 1.3em;
+            margin-left: -.65em;
+            position: absolute;
+            font-size: 1.5em;
+            vertical-align: middle;
+          }
+          &:before {
+            content: '\f1db';
+            @include pp-transition(all 0.40s);
+          }
+        }
+      }
+
+      &:not(:checked) + .pp-checkbox > label:hover:before {
+        color: $color-bd1;
+        content:  '\f00c'; //'\f05d';
+      }
+
+
+      &:checked + .pp-checkbox > label {
+        &:before {
+          content: '\f058';
+          color: $color-y1;
+        }
+
+      }
+
+    }
+
+    div.pp-radio-div {
+      text-align:left;
+      display: inline-block;
+      min-width: 20em;
+
+      &:focus {
+        background-color:rgba(210, 210, 210, .12);
+        border:2px solid $color-bd1;
+
+        @include box-shadow(0 0 4px rgba(210, 210, 210, .06));
+      }
+    }
+    input[type="radio"].rb-input {
+      opacity: 0;
+      &:focus ~ .pp-radio {
+        background-color:rgba(210, 210, 210, .12);
+        border:2px solid $color-bd1;
+
+        @include box-shadow(0 0 4px rgba(210, 210, 210, .06));
+      }
+
+      & + .radio-div-cont {
+        padding: .3em .3em;
+        border: 2px solid rgba(62, 62, 62, .02);
+        background-color: rgba(210,210,210,.12);
+
+        @include rounded(5px);
+
+        font-family: MyriadPro Semibold;
+        color: $color-y1;
+        font-size: .92em;
+        line-height: 1.3em;
+        display: inline-block;
+        min-width: 9em;
+        position: relative;
+        &.first-left {
+          left:-16px;
+        }
+        &.second-left {
+          left: -32px;
+        }
+      }
+
+      &:focus + .radio-div-cont {
+        background-color:rgba(210, 210, 210, .12);
+        border:2px solid $color-bd1;
+
+        @include box-shadow(0 0 4px rgba(210, 210, 210, .06));
+      }
+
+      & + .radio-div-cont > label {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        cursor: pointer;
+        text-align: center;
+        color: $color-bd1;
+
+        &:before {
+          font-family: FontAwesome;
+          left: 0em;
+          color: #917456;
+          text-align: center;
+          width: 1.4em;
+          position: absolute;
+          font-size: 1.5em;
+          vertical-align: middle;
+        }
+        &:before {
+          content: '\f1db';
+          @include pp-transition(all 0.40s);
+        }
+      }
+
+
+
+      &:not(:checked) + .radio-div-cont > label:hover:before {
+        color: $color-bd1;
+        content:  '\f00c'; //'\f05d';
+      }
+
+
+      &:checked + .radio-div-cont > label {
+        &:before {
+          content: '\f058';
+          color: $color-y1;
+        }
+        color: $color-y1;
+      }
+
+    }
+
+
+
+
+    .text-input {
+      padding: .3em .3em;
+      border: 2px solid rgba(62, 62, 62, .02);
+
+      @include rounded(5px);
+      background-color: rgba(210, 210, 210, .12);
+      font-family: MyriadPro Semibold;
+      color: $color-y1;
+      font-size: .92em;
+      line-height: 1.3em;
+      display: inline-block;
+
+      &.email {
+        min-width: 19em;
+      }
+      &.upload {
+        min-width: 24em;
+      }
+
+      &::-webkit-input-placeholder { /* WebKit browsers */
+        color:    #917456;
+        font-weight:normal;
+        font-style:italic;
+        font-family: MyriadPro;
+      }
+      &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        color:    #917456;
+        font-weight:normal;
+        font-style:italic;
+        font-family: MyriadPro;
+      }
+      &:-ms-input-placeholder { /* Internet Explorer 10+ */
+        color:    #917456;
+        font-weight:normal;
+        font-style:italic;
+        font-family: MyriadPro;
+      }
+
+      &:focus
+      {
+        background-color:rgba(210, 210, 210, .12);
+        border:2px solid $color-bd1;
+
+        @include box-shadow(0 0 4px rgba(210, 210, 210, .06));
+
+      }
+    }
+
+    input:-webkit-autofill {
+      @include box-shadow(0 0 0px 1000px rgba(210, 210, 210, .12) inset);
+    }
+
+
+
+  }
+}

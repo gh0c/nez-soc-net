@@ -1,0 +1,26 @@
+{% extends "templates/default.twig" %}
+{% block title %}
+    Član početna
+{% endblock %}
+
+{% block content %}
+
+    <div class = "title-box">
+        <h1>Korisničke stranice {{ auth.ssbos('članice', 'člana') }}</h1>
+    </div>
+
+    {% include "templates/partials/user_messages.twig" %}
+
+
+    <div class = "pp-content">
+        <p>
+            <span>Korisnik: {{ user.email }}</span>
+            {% set avatar = auth.getAvatarPath %}
+            <span>Avatar path: {{ avatar }}</span>
+        </p>
+        <p>
+            <a href = "{{ urlFor('user.profile') }}"> Uredi profil</a>
+        </p>
+    </div>
+
+{% endblock %}

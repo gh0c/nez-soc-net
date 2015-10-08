@@ -1,0 +1,62 @@
+{% for success in success_msgs %}
+    <div class = "vertical-section info">
+        <div>
+            <div class = "status-container msg success-msg">
+                <i class="status fa fa-check"></i> <h4>{{ success|nl2br }}</h4>
+            </div>
+        </div>
+    </div>
+
+{% endfor %}
+{% if flash.success %}
+    <div class = "vertical-section info">
+        <div>
+            <div class = "status-container msg success-msg warning-msg">
+                <i class="status fa fa-check"></i> <h4>{{ flash.success|nl2br }}</h4>
+            </div>
+        </div>
+    </div>
+
+{% endif %}
+
+{% for status in status_msgs %}
+    <div class = "vertical-section info">
+        <div>
+            <div class = "status-container msg status-msg warning-msg">
+                <i class="status fa fa-info-circle"></i> <h4>{{ status|nl2br }}</h4>
+            </div>
+        </div>
+    </div>
+
+{% endfor %}
+{% if flash.statuses %}
+    <div class = "vertical-section info">
+        <div>
+            <div class = "status-container msg status-msg warning-msg">
+                <i class="status fa fa-info-circle"></i> <h4>{{ flash.statuses|nl2br }}</h4>
+            </div>
+        </div>
+    </div>
+
+{% endif %}
+
+{% for error in error_msgs %}
+    <div class = "vertical-section info">
+        <div>
+            <div class = "status-container msg error-msg ">
+                <i class="status fa fa-times-circle"></i> <h4>{{ error|nl2br }}</h4>
+            </div>
+        </div>
+    </div>
+
+{% endfor %}
+{% if flash.errors %}
+    <div class = "vertical-section info">
+        <div>
+            <div class = "status-container msg error-msg warning-msg">
+                <i class="status fa fa-times-circle"></i> <h4>{{ flash.errors|nl2br }}</h4>
+            </div>
+        </div>
+    </div>
+
+{% endif %}

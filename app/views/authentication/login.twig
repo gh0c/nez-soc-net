@@ -1,0 +1,101 @@
+{% extends "templates/default.twig" %}
+{% block title %}
+    Prijava na članske stranice
+{% endblock %}
+
+{% block content %}
+
+    <div class = "title-box">
+        <h1>PRIJAVA REGISTRIRANIH ČLANOVA</h1>
+    </div>
+
+
+
+
+    <form method = "post" name = "user-login" id = "user-login"  onsubmit="return false;"
+          action = "{{ urlFor('user.login.post') }}">
+
+        <div class = "vertical-section">
+            <div>
+                <h4 class = "special input">E-mail: </h4>
+                <input type="text" name="email" id="email" placeholder="E-mail" required tabindex="1"
+                       maxlength="255" spellcheck="false"  class = "text-input email"/>
+                <h4 class = "req">*</h4 >
+            </div>
+        </div>
+
+        <div class = "vertical-section">
+            <div>
+                <h4 class = "special input">Lozinka: </h4>
+                <input type="password" name="password" id="password" placeholder="Lozinka" required
+                       maxlength="255" spellcheck="false" autocomplete="off" tabindex="2"
+                       class = "text-input email"/>
+                <h4 class = "req">*</h4 >
+            </div>
+
+        </div>
+
+        <div class = "vertical-section">
+            <div>
+                <h4 class = "special input">Zapamti me: </h4>
+                <input type="checkbox" name="remember_me" id="remember-me"
+                       class = "cb-input remember-me " tabindex="3">
+                <div class = "pp-checkbox text-input email">
+                    <label for = "remember-me"></label>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class = "vertical-section">
+            <div class = "password-reset">
+                <a href = "clanovi/zaboravljena-lozinka"><i class = "fa fa-key"></i> Zaboravljena lozinka?</a>
+            </div>
+        </div>
+
+        {% include "templates/partials/user_messages.twig" %}
+
+
+        {% include "templates/partials/live_status.container.twig" %}
+
+
+        <script type="text/javascript" src="public/js/validation.js?{{ "now"|date("YmdHis") }}"></script>
+
+        <input type = "hidden" name = "{{ csrf_key }}" value = "{{ csrf_token }}">
+        <div class = "submitter-cont">
+            <div>
+                <div class = "submitter submit" tabindex="4"
+                     onclick="validateAndSubmitLogin('user-login')">
+                    <span>PRIJAVA</span>
+                </div>
+                <div class="submitter">
+                    <a href = "{{ urlFor('home') }}" tabindex="5">ODUSTANI</a>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+
+    <script>
+        function valSub() {
+            if(formSubmittingActive == true) {
+                validateAndSubmitLogin('user-login');
+                return false;
+            }
+        }
+        $('#user-login').keydown(function(e) {
+            if (e.keyCode == 13) {
+                valSub();
+            }
+        });
+        $('.submitter.submit').keydown(function(e) {
+
+            if (e.keyCode == 13) {
+                valSub();
+            }
+        });
+    </script>
+
+{% endblock %}

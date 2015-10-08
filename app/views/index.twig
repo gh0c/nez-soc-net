@@ -1,0 +1,22 @@
+{% extends "templates/default.twig" %}
+
+{% block title %}
+Početna
+{% endblock %}
+
+{% block content %}
+
+    <div class = "main-title">
+        <h1>Početna</h1>
+    </div>
+
+    {% include "templates/partials/user_messages.twig" %}
+
+    <div class="inner-container">
+        <h1>/</h1>
+        <p>
+            Everything inside this box comes from view/index.twig.<br/>
+            Everything outside this box comes from view/_base.twig (which is the surrounding layout template).
+        </p>
+    </div>
+{% endblock %}

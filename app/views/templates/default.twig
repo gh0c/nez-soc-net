@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'templates/partials/head_info.twig'%}
+    <title>{% block title %} {% endblock %}</title>
+</head>
+
+
+<body>
+
+
+<div class = "pp-a-box container">
+
+    <!-- sidebar for logged users -->
+    {% include 'templates/sidebar.twig'%}
+
+    <div class = "content-wrap">
+        <div class = "content">
+
+            <div class = "pp-header-container">
+                <div class = "navigation-box">
+
+
+                    <!-- navigation -->
+                    <div class="navigation">
+                        <a href="{{ urlFor('home') }}">home</a>
+                        {% if auth %}
+                        <a href="{{ urlFor('user.logout') }}">Logout {{ auth.first_name }}</a>
+                        <a href = "{{ urlFor('user.home') }}"> Članska </a>
+                        {% else %}
+                        <a href="{{ urlFor('user.login') }}">Login</a>
+                        <a href="{{ urlFor('user.registration') }}">Registracija</a>
+
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class = "pp-content-container">
+                <div id = "pp-content">
+
+                    <div class="pp-content-box">
+                        <!-- main content, will be injected via Twig -->
+                        {% block content %} {% endblock %}
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% if auth %}
+<script src="public/js/SideslideSidebar/classie.js"></script>
+<script src="public/js/SideslideSidebar/main.js"></script>
+{% endif %}
+
+</body>
+</html>

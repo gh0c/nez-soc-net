@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    $vendorDir . '/cloudinary/cloudinary_php/src/Helpers.php',
     $vendorDir . '/panique/pdo-debug/pdo-debug.php',
     $vendorDir . '/panique/php-sass/sass-compiler.php',
 );

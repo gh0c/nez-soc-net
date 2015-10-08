@@ -1,0 +1,28 @@
+@import "modules/modules.import";
+
+.navigation-box
+{
+  display: block;
+
+  margin: auto auto;
+
+  border-bottom: 2px solid;
+
+  @include rounded-se(3px);
+  @include rounded-sw(3px);
+
+  font-family: MyriadPro;
+
+//  height: 64px;
+  z-index: 20;
+
+  width: 96%;
+  min-width: 660px;
+  padding: 0 5px;
+  @include breakpoint(desktop) {
+    width: 65%;
+    min-width: 1185px;
+    max-width: 1200px;
+    padding: 0 25px;
+  }
+}

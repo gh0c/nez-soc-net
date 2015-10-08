@@ -1,0 +1,127 @@
+{% extends "templates/default.twig" %}
+{% block title %}
+    Ikona
+{% endblock %}
+
+{% block content %}
+
+
+<div class = "title-box">
+    <h1>Ikona {{ auth.ssbos('članice', 'člana') }}</h1>
+</div>
+{% include "templates/partials/user_messages.twig" %}
+
+
+{% set avatar = auth.getAvatarPath("thumb1") %}
+
+<div class = "vertical-section">
+    <div>
+        <h4 class = "special input">Trenutna ikona: </h4>
+
+        <div class = "home-icon-cont">
+
+            {%  if avatar %}
+
+                <div class = "thumbnail user">
+                    <div class = "pic-cont">
+                        <span class="v-align-helper"></span><img src="{{ avatar }}?{{ "now"|date("YmdHis") }}">
+                    </div>
+                </div>
+
+                <div class = "thumbnail user">
+                    <div class = "pic-cont rounded ">
+                        <span class="v-align-helper"></span><img src="{{ avatar }}?{{ "now"|date("YmdHis") }}">
+                    </div>
+                </div>
+
+
+            {% else %}
+                <div class = "thumbnail user user-icon">
+                    <div class="pic-cont ">
+                        <span class="v-align-helper"></span><i class = "fa fa-{{ auth.ssbos('fe', '') }}male"></i>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+    </div>
+</div>
+
+{%  if avatar %}
+    <form method = "post" name = "user-thumb-ul" id = "user-thumb-ul" onsubmit = "return false;"
+          action = "{{ urlFor('user.thumb_ul.post') }}"  enctype="multipart/form-data">
+
+
+        <div class = "vertical-section">
+            <div>
+                <h4 class = "inform">
+                    Ikonu možete sami podesiti ... </br>
+                    <i class = "fa fa-info-circle"></i> U slučaju neispravne funkcionalnosti alata
+                    preporuča se provjeriti zadnju verziju web preglednika!
+                </h4>
+            </div>
+        </div>
+        <div class = "vertical-section">
+            <div>
+                <div class = "pp-image-resize-box">
+                    <div class="component">
+
+                        <div class="overlay">
+                            <div class="overlay-inner">
+                            </div>
+                        </div>
+                        <div class="transparent-overlay"></div>
+
+                        <img class="resize-icon" src="{{ auth.getAvatarPath() }}?{{ "now"|date("YmdHis") }}" alt="image for resizing">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <input type="hidden" name = "width_ratio" value = "">
+        <input type="hidden" name = "height_ratio" value = "">
+        <input type="hidden" name = "left" value = "">
+        <input type="hidden" name = "top" value = "">
+
+        <script src="public/js/ResizingInBrowser/main.js"></script>
+
+
+
+        {% include "templates/partials/live_status.container.twig" %}
+
+        <script type="text/javascript" src="public/js/validation.js?{{ "now"|date("YmdHis") }}"></script>
+
+
+
+        <input type = "hidden" name = "{{ csrf_key }}" value = "{{ csrf_token }}">
+        <div class = "submitter-cont">
+            <div>
+                <div class = "submitter submit" onclick="">
+                    <span>PRIHVATI</span>
+                </div>
+
+                <div class="submitter">
+                        <a href = "{{ urlFor('user.profile') }}">POVRATAK</a>
+                </div>
+
+                <div class="submitter">
+                    <a href = "{{ urlFor('user.avatar') }}">PROMJENA AVATARA</a>
+                </div>
+
+            </div>
+        </div>
+
+        <script>
+            // Kick everything off with the target image
+            resizeableImage($('.resize-icon'));
+            $('.submitter.submit').on('click', crop);
+        </script>
+
+
+
+    </form>
+
+{%  endif %}
+
+{% endblock %}
+

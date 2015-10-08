@@ -1,0 +1,28 @@
+{% extends "templates/default.twig" %}
+{% block title %}
+    Test akcije
+{% endblock %}
+
+{% block content %}
+
+    <div class = "main-title">
+        <h1>Ostale akcije</h1>
+    </div>
+<div class="inner-container">
+    <h1>Akcija:</h1>
+
+    {% include "templates/partials/user_messages.twig" %}
+    <div>
+        <span>Korisnik: {{ user.email }}</span>
+        {% set avatar = auth.getAvatarPath %}
+        <span>Avatar path: {{ avatar }}</span>
+    </div>
+</div>
+
+<div class = "vertical-section">
+    <div>
+        <h4>Odabrana akcija: {{ action }}</h4>
+
+    </div>
+</div>
+{% endblock %}
